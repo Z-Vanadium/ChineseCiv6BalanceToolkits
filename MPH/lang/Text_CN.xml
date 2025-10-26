@@ -940,5 +940,11 @@
         <Replace Tag="MPH_PRESET_CPL_GOAT_NAME" Language="zh_Hans_CN">
             <Text>CPL G.O.A.T</Text>
         </Replace>
+        <Replace Tag="LOC_NOSE_CONTROL_NAME" Language="zh_Hans_CN">
+			<Text>[COLOR:ResGoldLabelCS]禁止SE科文[ENDCOLOR]</Text>
+		</Replace>
+		<Replace Tag="LOC_NOSE_CONTROL_DESC" Language="zh_Hans_CN">
+			<Text>禁止SE科文,若回合结束未选择科技或市政,则会自动随机选择一项。若想SE科文则关闭此选项,默认开启。</Text>
+		</Replace>
     </LocalizedText>
 </GameData>

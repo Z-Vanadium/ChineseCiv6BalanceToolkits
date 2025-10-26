@@ -1,6 +1,10 @@
 function NoMoreStack()
 	print("No more stack check turn", Game.GetCurrentGameTurn())
 	if ( Game.GetCurrentGameTurn() ~= GameConfiguration.GetStartTurn()) then
+		if GameConfiguration.GetValue("NOSE_CONTROL") == false then
+			print("复活SE科文就在今天")
+			return
+		end
 	for i = 0, PlayerManager.GetAliveMajorsCount() - 1 do
 		if (PlayerConfigurations[i]:GetLeaderTypeName() ~= "LEADER_SPECTATOR" and PlayerConfigurations[i]:GetHandicapTypeID() ~= 2021024770) then
 			local pPlayerCulture:table = Players[i]:GetCulture();
