@@ -4460,6 +4460,9 @@ end
 -- ===========================================================================
 --	Initialize screen
 -- ===========================================================================
+
+
+
 function Initialize()
 	m_kPopupDialog = PopupDialog:new( "StagingRoom" );
 	
@@ -4697,8 +4700,50 @@ end
 Initialize();
 
 -- ========================================================================
+--练手
+--玩家 状态 信息 
+--房主 状态 信息 检测
+--流程 房主 创建游戏 检测一次 玩家进入房间 检测一次
+--流程 玩家 进入游戏 
+-- ========================================================================
+--全局变量
+local b_ccbb_game = false --是否为CCB基础游戏
+local b_ccbm_game = false--是否为CCB地图游戏
+local b_ccbe_game = false--是否为CCB拓展游戏
+local b_ccbt_game = false--是否为CCBtoolkit游戏
+local b_ishost = false   --本机是否为房主
+local verison_host_ccbb  --房主ccbb版本
+local verison_host_ccbm  --房主ccbm版本
+local verison_host_ccbe  --房主ccbe版本
+local verison_host_ccbt  --房主ccbt版本
+
+
+function Initialize_CCBT() --初始化CCBT
+
+	b_ccbt_gmae = true;
+	Events.MultiplayerChat.Add( OnMultiplayerChat_CCBT );
+
+end
+
+function OnMultiplayerChat_CCBT( fromPlayer, toPlayer, text, eTargetType )
+	local localID = Network.GetLocalPlayerID
+	local hostID = Network.GetGameHostPlayerID
+	if localID == hostID then
+		
+	end
+end
+
+
+-- ========================================================================
 -- 扑克游戏
 -- ========================================================================
+
+
+
+
+
+
+
 
 -- ====================================================
 -- 全局变量
