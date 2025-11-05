@@ -4698,6 +4698,7 @@ function Initialize()
 	CreatLeaderStatsInstance()
 	---------------------------------------
 	Events.MultiplayerChat.Add( OnMultiplayerChat_CCBT );
+	print("Initialize Successfully")
 
 end
 Initialize();
@@ -4728,7 +4729,7 @@ local s_ccbt_id = nil
 
 function Initialize_CCBT() --初始化CCBT
 
-	b_ccbt_gmae = true;
+	b_ccbt_game = true;
 	Events.MultiplayerChat.Add( OnMultiplayerChat_CCBT );
 	print("CCBT road successfully!")
 end
@@ -4743,7 +4744,7 @@ function OnMultiplayerChat_CCBT( fromPlayer, toPlayer, text, eTargetType )
 		b_ishost = false
 	end
 	
-	if string.sub(text) == "output" then
+	if string.sub(text,1,6) == "output" then
 		SendHostVersion()
 	end
 end
