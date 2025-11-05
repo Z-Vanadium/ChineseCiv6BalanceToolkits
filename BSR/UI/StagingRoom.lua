@@ -4696,15 +4696,16 @@ function Initialize()
 	Creat_TPT_Update()
 	
 	CreatLeaderStatsInstance()
+	---------------------------------------
+	Events.MultiplayerChat.Add( OnMultiplayerChat_CCBT );
+
 end
 Initialize();
-
 -- ========================================================================
 --练手
 --玩家 状态 信息 
 --房主 状态 信息 检测
---流程 房主 创建游戏 检测一次 玩家进入房间 检测一次
---流程 玩家 进入游戏 
+--抛弃自动检测 拥抱手动检测 先定义再做检测
 -- ========================================================================
 --全局变量
 local b_ccbb_game = false --是否为CCB基础游戏
@@ -4712,27 +4713,80 @@ local b_ccbm_game = false--是否为CCB地图游戏
 local b_ccbe_game = false--是否为CCB拓展游戏
 local b_ccbt_game = false--是否为CCBtoolkit游戏
 local b_ishost = false   --本机是否为房主
-local verison_host_ccbb  --房主ccbb版本
-local verison_host_ccbm  --房主ccbm版本
-local verison_host_ccbe  --房主ccbe版本
-local verison_host_ccbt  --房主ccbt版本
-
+local verison_host_ccbb = nil --房主ccbb版本
+local verison_host_ccbm = nil --房主ccbm版本
+local verison_host_ccbe = nil --房主ccbe版本
+local verison_host_ccbt = nil --房主ccbt版本
+local verison_local_ccbb = nil --本地ccbb版本
+local verison_local_ccbm = nil --本地ccbm版本
+local verison_local_ccbe = nil --本地ccbe版本
+local verison_local_ccbt = nil --本地ccbt版本
+local s_ccbb_id = nil
+local s_ccbm_id = nil
+local s_ccbe_id = nil
+local s_ccbt_id = nil
 
 function Initialize_CCBT() --初始化CCBT
 
 	b_ccbt_gmae = true;
 	Events.MultiplayerChat.Add( OnMultiplayerChat_CCBT );
-
+	print("CCBT road successfully!")
 end
 
 function OnMultiplayerChat_CCBT( fromPlayer, toPlayer, text, eTargetType )
-	local localID = Network.GetLocalPlayerID
-	local hostID = Network.GetGameHostPlayerID
+	local localID = Network.GetLocalPlayerID();
+	local hostID = Network.GetGameHostPlayerID();
+
 	if localID == hostID then
-		
+		b_ishost = true
+	else
+		b_ishost = false
+	end
+	
+	if string.sub(text) == "output" then
+		SendHostVersion()
 	end
 end
 
+function GetLocalModVersion(id)
+	if id == nil then
+		return nil
+	end
+	
+	local mods = Modding.GetInstalledMods();
+	if(mods == nil or #mods == 0) then
+		print("No mods locally installed!")
+		return nil
+	end
+	
+	local handle = -1
+	for i,mod in ipairs(mods) do
+		if mod.Id == id then
+			handle = mod.Handle
+			break
+		end
+	end
+	if handle ~= -1 then
+		local version = Modding.GetModProperty(handle, "version");
+		return version
+		else
+		return nil
+	end
+	
+end
+
+function SendHostVersion()
+	local localID = Network.GetLocalPlayerID()
+	local hostID = Network.GetGameHostPlayerID()
+	if localID ~= hostID and b_ccbt_game == true then
+		local ccbb_version = GetLocalModVersion(s_ccbb_id)
+		local ccbm_version = GetLocalModVersion(s_ccbm_id)
+		local ccbe_version = GetLocalModVersion(s_ccbe_id)
+		local ccbt_version = GetLocalModVersion(s_ccbt_id)
+		Network.SendChat(".ccbt_ui_modversion_"..tostring(ccbt_version).."_CCBB_"..tostring(ccbb_version).."_CCBM_"..tostring(ccbm_version).."_CCBE_"..tostring(ccbe_version),-2,hostID)
+		print("Mod Version Sending successfully")
+	end
+end
 
 -- ========================================================================
 -- 扑克游戏
