@@ -2,7 +2,7 @@ function NoMoreStack()
 	print("No more stack check turn", Game.GetCurrentGameTurn())
 	if ( Game.GetCurrentGameTurn() ~= GameConfiguration.GetStartTurn()) then
 		if GameConfiguration.GetValue("NOSE_CONTROL") == false then
-			print("复活SE科文就在今天")
+			print("允许SE行为")
 			return
 		end
 	for i = 0, PlayerManager.GetAliveMajorsCount() - 1 do
