@@ -8,7 +8,7 @@
   2023.05.04	号码菌
 -->
     <!--Jianbao-->
-<Mod id="8b7d0a98-bb05-11f0-863c-b42e99690573" version="20240805">
+<Mod id="8af4fe8e-5406-7d72-d9d6-a8f5d1b66e50" version="20240805">
 	<!-- 正式版 -->
 <!-- <Mod id="8af4fe8e-5406-7d72-d9d6-a8f5d1b66e40" version="20240805"> -->
 	<Properties>
@@ -19,6 +19,7 @@
 		<SpecialThanks>LOC_TPT_THANKS</SpecialThanks>
 		<AffectsSavedGames>0</AffectsSavedGames>
 		<CompatibleVersions>1.2,2.0</CompatibleVersions>
+		<Version>001</Version>
 	</Properties>
 
 	<LocalizedText>

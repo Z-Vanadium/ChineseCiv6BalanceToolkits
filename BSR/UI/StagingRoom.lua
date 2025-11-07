@@ -776,6 +776,21 @@ end
 -- Chat
 -------------------------------------------------
 function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
+	local localID = Network.GetLocalPlayerID();
+	local hostID = Network.GetGameHostPlayerID();
+	print(hostID)
+	print(localID)
+	if localID == hostID then
+		b_ishost = true
+		print("Be Host")
+	else
+		b_ishost = false
+		print("Be not the Host")
+	end
+	
+	if string.sub(text,1,6) == "output" then
+		SendHostVersion()
+	end
     OnChat(fromPlayer, toPlayer, text, eTargetType, true);
 end
 
@@ -3283,11 +3298,78 @@ function BuildAdditionalContent()
     m_modsIM:ResetInstances();
 
     local enabledMods = GameConfiguration.GetEnabledMods();
+	local b_ccbb_game = false --是否为CCB基础游戏
+	local b_ccbm_game = false --是否为CCB地图游戏
+	local b_ccbe_game = false --是否为CCB拓展游戏
+	local b_ccbt_game = false --是否为CCBtoolkit游戏
+	local g_mod_version = g_mod_version or {nil}
+	local s_ccbt_id = s_ccbt_id or nil
+	local s_ccbm_id = s_ccbm_id or nil  
+	local s_ccbb_id = s_ccbb_id or nil
+	local s_ccbe_id = s_ccbe_id or nil
+	local isCivPlayerName = false
+	local count = 0
     for _, curMod in ipairs(enabledMods) do
+		count = count + 1
         local modControl = m_modsIM:GetInstance();
-        local modTitleStr = curMod.Title;
-
+        -- 确保 curMod.Title 不为 nil //防止UI崩坏（调试）需要
+		local modTitleStr = curMod.Title or "Unknown Mod"
         -- Color unofficial mods to call them out.
+		if curMod.Id == "6e52c135-00e7-44b5-a7de-6588a4f38797" then --未知 似乎是某个必定订阅的DLC 以检测是否为人类
+            isCivPlayerName = true
+            modTitleStr = "[COLOR_RED]".. modTitleStr .. "[ENDCOLOR]";
+        end
+		if curMod.Id == "8af4fe8e-5406-7d72-d9d6-a8f5d1b66e50" then --CCBT 测试版本号
+            local version = GetLocalModVersion(curMod.Id)
+			g_mod_version["ccb_tool_version"] = version or "unknown"
+            if version then
+                modTitleStr = "[COLOR_LIGHTBLUE]".. modTitleStr .. "[ENDCOLOR] (local: ".. version ..")";
+            else
+                modTitleStr = "[COLOR_LIGHTBLUE]".. modTitleStr .. "[ENDCOLOR] (local: unknown)";
+            end
+            b_ccbt_game = true
+			s_ccbt_id = curMod.Id
+        end
+        if curMod.Id == "3291a787-4a93-445c-998d-e22034ab15b3" or curMod.Id == "c6e5ad32-0600-4a98-a7cd-5854a1abcaaf" then --BSMP BSM 不需要改变
+            modTitleStr = "[COLOR_LIGHTBLUE]".. modTitleStr .. "[ENDCOLOR]";
+            b_spec_game = true
+        end
+        if curMod.Id == "8af4fe8e-5406-7d72-d9d6-a8f5d1b66e10" then --CCBM
+            local version = GetLocalModVersion(curMod.Id)
+			g_mod_version["ccb_map_version"] = version or "unknown"
+            if version then
+                modTitleStr = "[COLOR_LIGHTBLUE]".. modTitleStr .. "[ENDCOLOR] (local: ".. version ..")";
+            else
+                modTitleStr = "[COLOR_LIGHTBLUE]".. modTitleStr .. "[ENDCOLOR] (local: unknown)";
+            end
+            b_ccbm_game = true
+            s_ccbm_id = curMod.Id
+        end
+        
+        if curMod.Id == "8af4fe8e-5406-7d72-d9d6-a8f5d1b66e00"  --CCBB
+            or curMod.Id == "8af4fe8e-5406-7d72-d9d6-a8f5d1b66e08"  --CCBB WIP
+			or curMod.Id == "8af4fe8e-5406-7d72-d9d6-a8f5d1b66e05" then--CCBB Beta
+            local version = GetLocalModVersion(curMod.Id)
+			g_mod_version["ccbb_version"] = version or "unknown"
+            if version then
+                modTitleStr = "[COLOR_LIGHTBLUE]".. modTitleStr .. "[ENDCOLOR] (local: ".. version ..")";
+            else
+                modTitleStr = "[COLOR_LIGHTBLUE]".. modTitleStr .. "[ENDCOLOR] (local: unknown)";
+            end
+            b_ccbb_game = true
+            s_ccbb_id = curMod.Id
+        end
+        if curMod.Id == "8af4fe8e-5406-7d72-d9d6-a8f5d1b66e30" then --CCBE
+            local version = GetLocalModVersion(curMod.Id)
+			g_mod_version["ccbe_version"] = version or "unknown"
+            if version then
+                modTitleStr = "[COLOR_LIGHTBLUE]".. modTitleStr .. "[ENDCOLOR] (local: ".. version ..")";
+            else
+                modTitleStr = "[COLOR_LIGHTBLUE]".. modTitleStr .. "[ENDCOLOR] (local: unknown)";
+            end
+            b_ccbe_game = true
+            s_ccbe_id = curMod.Id
+        end
         if (not curMod.Official) then
             modTitleStr = ColorString_ModGreen .. modTitleStr .. "[ENDCOLOR]";
         end
@@ -4772,6 +4854,7 @@ function Initialize()
     Events.SteamFriendsPresenceUpdated.Add(UpdateFriendsList);
     Events.CloudGameKilled.Add(OnCloudGameKilled);
     Events.CloudGameQuit.Add(OnCloudGameQuit);
+--------------------------------------------
 
     LuaEvents.GameDebug_Return.Add(OnGameDebugReturn);
     LuaEvents.HostGame_ShowStagingRoom.Add(OnRaise);
@@ -4796,6 +4879,88 @@ function Initialize()
 	print("Initialize Successfully")
 end
 Initialize();
+
+-- ========================================================================
+--练手
+--玩家 状态 信息 
+--房主 状态 信息 检测
+--流程 房主 创建游戏 检测一次 玩家进入房间 检测一次
+--流程 玩家 进入游戏 
+--抛弃自动检测 拥抱手动检测 先定义再做检测
+-- ========================================================================
+
+local b_ccbb_game = false --是否为CCB基础游戏
+local b_ccbm_game = false --是否为CCB地图游戏
+local b_ccbe_game = false --是否为CCB拓展游戏
+local b_ccbt_game = true --是否为CCBtoolkit游戏
+local b_ishost = false    --本机是否为房主
+local b_spec_game = false --BSM 
+local verison_host_ccbb = nil --房主ccbb版本
+local verison_host_ccbm = nil --房主ccbm版本
+local verison_host_ccbe = nil --房主ccbe版本
+local verison_host_ccbt = nil --房主ccbt版本
+local verison_local_ccbb = nil --本地ccbb版本
+local verison_local_ccbm = nil --本地ccbm版本
+local verison_local_ccbe = nil --本地ccbe版本
+local verison_local_ccbt = nil --本地ccbt版本
+local g_mod_version = g_mod_version or {nil}
+local s_ccbb_id = nil
+local s_ccbm_id = nil
+local s_ccbe_id = nil
+local s_ccbt_id = nil
+local isCivPlayerName = false
+
+function Initialize_CCBT() --初始化CCBT
+	b_ccbt_gmae = true;
+	Events.MultiplayerChat.Add(OnMultiplayerChat_CCBT);
+	print("CCBT road successfully!")
+end
+
+function GetLocalModVersion(id)
+	if id == nil then
+		return nil
+	end
+	
+	local mods = Modding.GetInstalledMods();
+	if(mods == nil or #mods == 0) then
+		print("No mods locally installed!")
+		return nil
+	end
+	
+	local handle = -1
+	for i,mod in ipairs(mods) do
+		if mod.Id == id then
+			handle = mod.Handle
+			break
+		end
+	end
+	if handle ~= -1 then
+		local version = Modding.GetModProperty(handle, "Version");
+		return version
+		else
+		return nil
+	end
+	
+end
+
+function SendHostVersion()
+	print("SendHostVersion work!")
+	b_ccbt_game = true
+	local localID = Network.GetLocalPlayerID()
+	local hostID = Network.GetGameHostPlayerID()
+	if localID == hostID and b_ccbt_game == true then
+		local ccbb_version = GetLocalModVersion(s_ccbb_id);
+		print(ccbb_version)
+		local ccbm_version = GetLocalModVersion(s_ccbm_id);
+		print(ccbm_version)
+		local ccbe_version = GetLocalModVersion(s_ccbe_id);
+		print(ccbe_version)
+		local ccbt_version = GetLocalModVersion(s_ccbt_id);
+		print(ccbt_version)
+		Network.SendChat(".ccbt_ui_modversion_"..tostring(ccbt_version).."_CCBB_"..tostring(ccbb_version).."_CCBM_"..tostring(ccbm_version).."_CCBE_"..tostring(ccbe_version),-2,hostID)
+		print("Mod Version Sending successfully")
+	end
+end
 
 -- ========================================================================
 -- 扑克游戏
