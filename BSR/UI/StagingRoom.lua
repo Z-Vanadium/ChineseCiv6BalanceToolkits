@@ -35,6 +35,13 @@ local TimerTypes = {
 ----------------------------------------------------------------
 -- Globals
 ----------------------------------------------------------------
+
+g_mod_version = {}
+s_ccbb_id = ""
+s_ccbm_id = ""
+s_ccbe_id = ""
+s_ccbt_id = ""
+
 local g_TeamBaseRatio = {};
 local g_TPT_PlayerDatas = {};        -- 黑名单信息
 
@@ -438,15 +445,11 @@ end
 -- ===========================================================================
 --	Input Handler
 -- ===========================================================================
-function KeyUpHandler(key)
-    if key == Keys.VK_ESCAPE then
-        if not Controls.Main_Poker:IsHidden() then
-            Poker_OnClose()
-        else
-            Close();
-        end
-        return true;
-    end
+function KeyUpHandler( key:number )
+	if key == Keys.VK_ESCAPE then
+		Close();
+		return true;
+	end
     return false;
 end
 function OnInputHandler(pInputStruct)
@@ -3298,16 +3301,16 @@ function BuildAdditionalContent()
     m_modsIM:ResetInstances();
 
     local enabledMods = GameConfiguration.GetEnabledMods();
-	local b_ccbb_game = false --是否为CCB基础游戏
-	local b_ccbm_game = false --是否为CCB地图游戏
-	local b_ccbe_game = false --是否为CCB拓展游戏
-	local b_ccbt_game = false --是否为CCBtoolkit游戏
-	local g_mod_version = g_mod_version or {nil}
-	local s_ccbt_id = s_ccbt_id or nil
-	local s_ccbm_id = s_ccbm_id or nil  
-	local s_ccbb_id = s_ccbb_id or nil
-	local s_ccbe_id = s_ccbe_id or nil
-	local isCivPlayerName = false
+	b_ccbb_game = false --是否为CCB基础游戏
+	 b_ccbm_game = false --是否为CCB地图游戏
+	 b_ccbe_game = false --是否为CCB拓展游戏
+	 b_ccbt_game = false --是否为CCBtoolkit游戏
+	 g_mod_version = g_mod_version or {nil}
+	 s_ccbb_id = s_ccbb_id or ""
+	 s_ccbm_id = s_ccbm_id or ""
+	 s_ccbe_id = s_ccbe_id or "" 
+	 s_ccbt_id = s_ccbt_id or ""
+	 isCivPlayerName = false
 	local count = 0
     for _, curMod in ipairs(enabledMods) do
 		count = count + 1
@@ -4903,18 +4906,8 @@ local verison_local_ccbb = nil --本地ccbb版本
 local verison_local_ccbm = nil --本地ccbm版本
 local verison_local_ccbe = nil --本地ccbe版本
 local verison_local_ccbt = nil --本地ccbt版本
-local g_mod_version = g_mod_version or {nil}
-local s_ccbb_id = nil
-local s_ccbm_id = nil
-local s_ccbe_id = nil
-local s_ccbt_id = nil
 local isCivPlayerName = false
 
-function Initialize_CCBT() --初始化CCBT
-	b_ccbt_gmae = true;
-	Events.MultiplayerChat.Add(OnMultiplayerChat_CCBT);
-	print("CCBT road successfully!")
-end
 
 function GetLocalModVersion(id)
 	if id == nil then
@@ -4949,14 +4942,16 @@ function SendHostVersion()
 	local localID = Network.GetLocalPlayerID()
 	local hostID = Network.GetGameHostPlayerID()
 	if localID == hostID and b_ccbt_game == true then
-		local ccbb_version = GetLocalModVersion(s_ccbb_id);
-		print(ccbb_version)
-		local ccbm_version = GetLocalModVersion(s_ccbm_id);
-		print(ccbm_version)
-		local ccbe_version = GetLocalModVersion(s_ccbe_id);
-		print(ccbe_version)
-		local ccbt_version = GetLocalModVersion(s_ccbt_id);
-		print(ccbt_version)
+        -- 直接从 g_mod_version 表中获取版本号
+        local ccbb_version = g_mod_version["ccbb_version"]
+        local ccbm_version = g_mod_version["ccb_map_version"] 
+        local ccbe_version = g_mod_version["ccbe_version"]
+        local ccbt_version = g_mod_version["ccb_tool_version"]
+        
+        print("CCBB Version:", ccbb_version)
+        print("CCBM Version:", ccbm_version)
+        print("CCBE Version:", ccbe_version)
+        print("CCBT Version:", ccbt_version)
 		Network.SendChat(".ccbt_ui_modversion_"..tostring(ccbt_version).."_CCBB_"..tostring(ccbb_version).."_CCBM_"..tostring(ccbm_version).."_CCBE_"..tostring(ccbe_version),-2,hostID)
 		print("Mod Version Sending successfully")
 	end
