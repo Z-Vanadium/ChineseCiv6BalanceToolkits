@@ -795,6 +795,26 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
 		SendHostVersion()
 	end
 
+    if string.sub(text,1,16) == ".CheckModVersion" then
+        if b_ishost then
+            -- 主机端逻辑：收到检查请求后发送版本号
+            print("收到版本检查请求，发送主机版本信息")
+            SendHostVersion()
+        else
+            -- 玩家端逻辑：主动请求版本检查
+            print("发送版本检查请求给主机")
+            Network.SendChat(".RequestModVersion", hostID, localID) -- 私聊发送给主机
+        end
+    end
+
+	if string.sub(text,1,18) == ".RequestModVersion" then
+		if b_ishost == true then
+			SendHostVersion()
+		else
+			return
+		end
+	end
+
 	if string.sub(text,1,20) == ".ccbt_ui_modversion_" then --隐藏MOD发送的信息（公屏）
 		local indexCCBBs, indexCCBBe = string.find(text,"_CCBB_")
 		local indexCCBMs, indexCCBMe = string.find(text,"_CCBM_")
@@ -808,6 +828,78 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
 	end
 
     OnChat(fromPlayer, toPlayer, text, eTargetType, true);
+end
+
+function CompareVersions(host_ccbt, host_ccbb, host_ccbm, host_ccbe)
+    local local_ccbt = g_mod_version["ccb_tool_version"]
+    local local_ccbb = g_mod_version["ccbb_version"]
+    local local_ccbm = g_mod_version["ccb_map_version"]
+    local local_ccbe = g_mod_version["ccbe_version"]
+    
+    print("开始版本比较...")
+    print("本地版本 - CCBT:"..tostring(local_ccbt).." CCBB:"..tostring(local_ccbb).." CCBM:"..tostring(local_ccbm).." CCBE:"..tostring(local_ccbe))
+    print("主机版本 - CCBT:"..tostring(host_ccbt).." CCBB:"..tostring(host_ccbb).." CCBM:"..tostring(host_ccbm).." CCBE:"..tostring(host_ccbe))
+    
+    -- 重置比较结果
+    g_version_match = {
+        ccbt = false,
+        ccbb = false,
+        ccbm = false,
+        ccbe = false
+    }
+    
+    -- 逐个比较版本
+    local all_match = true
+    
+    if local_ccbt == host_ccbt then
+        g_version_match.ccbt = true
+        print("✓ CCBT 版本匹配")
+    else
+        print("✗ CCBT 版本不匹配! 本地:"..tostring(local_ccbt).." 主机:"..tostring(host_ccbt))
+        all_match = false
+    end
+    
+    if local_ccbb == host_ccbb then
+        g_version_match.ccbb = true
+        print("✓ CCBB 版本匹配")
+    else
+        print("✗ CCBB 版本不匹配! 本地:"..tostring(local_ccbb).." 主机:"..tostring(host_ccbb))
+        all_match = false
+    end
+    
+    if local_ccbm == host_ccbm then
+        g_version_match.ccbm = true
+        print("✓ CCBM 版本匹配")
+    else
+        print("✗ CCBM 版本不匹配! 本地:"..tostring(local_ccbm).." 主机:"..tostring(host_ccbm))
+        all_match = false
+    end
+    
+    if local_ccbe == host_ccbe then
+        g_version_match.ccbe = true
+        print("✓ CCBE 版本匹配")
+    else
+        print("✗ CCBE 版本不匹配! 本地:"..tostring(local_ccbe).." 主机:"..tostring(host_ccbe))
+        all_match = false
+    end
+    
+    if all_match then
+        print("所有模组版本匹配，可以正常游戏！")
+    else
+        print("警告：部分模组版本不匹配，可能导致游戏异常！")
+    end
+    
+    return all_match
+end
+
+-- 获取版本比较结果的函数（可用于UI显示）
+function GetVersionMatchStatus()
+    return g_version_match
+end
+
+-- 检查是否所有模组版本都匹配
+function IsAllVersionMatched()
+    return g_version_match.ccbt and g_version_match.ccbb and g_version_match.ccbm and g_version_match.ccbe
 end
 
 function OnChat(fromPlayer, toPlayer, text, eTargetType, playSounds)
