@@ -794,6 +794,19 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
 	if string.sub(text,1,6) == "output" then
 		SendHostVersion()
 	end
+
+	if string.sub(text,1,20) == ".ccbt_ui_modversion_" then --隐藏MOD发送的信息（公屏）
+		local indexCCBBs, indexCCBBe = string.find(text,"_CCBB_")
+		local indexCCBMs, indexCCBMe = string.find(text,"_CCBM_")
+		local indexCCBEs, indexCCBEe = string.find(text,"_CCBE_")
+		local ccbt_version = string.sub(text,20,indexCCBBs-1)
+		local ccbb_version = string.sub(text,indexCCBBe+1,indexCCBMs-1)
+		local ccbm_version = string.sub(text, indexCCBMe+1,indexCCBEs-1)
+		local ccbe_version = string.sub(text,indexCCBEe+1)
+		print("各模组版本"..tostring(ccbt_version)..tostring(ccbb_version)..tostring(ccbm_version)..tostring(ccbe_version))
+		return
+	end
+
     OnChat(fromPlayer, toPlayer, text, eTargetType, true);
 end
 
