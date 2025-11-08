@@ -835,6 +835,10 @@ function CompareVersions(host_ccbt, host_ccbb, host_ccbm, host_ccbe)
     local local_ccbb = g_mod_version["ccbb_version"]
     local local_ccbm = g_mod_version["ccb_map_version"]
     local local_ccbe = g_mod_version["ccbe_version"]
+	local host_ccbt = local_ccbt
+    local host_ccbb = local_ccbb
+    local host_ccbm = local_ccbm
+    local host_ccbe = local_ccbe
     
     print("开始版本比较...")
     print("本地版本 - CCBT:"..tostring(local_ccbt).." CCBB:"..tostring(local_ccbb).." CCBM:"..tostring(local_ccbm).." CCBE:"..tostring(local_ccbe))
