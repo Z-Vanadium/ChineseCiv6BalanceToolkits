@@ -805,6 +805,7 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
             print("发送版本检查请求给主机")
             Network.SendChat(".RequestModVersion", hostID, localID) -- 私聊发送给主机
         end
+		CompareVersions()
     end
 
 	if string.sub(text,1,18) == ".RequestModVersion" then
