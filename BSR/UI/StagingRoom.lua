@@ -796,25 +796,12 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
 	end
 
     if string.sub(text,1,16) == ".CheckModVersion" then
-        if b_ishost then
-            -- 主机端逻辑：收到检查请求后发送版本号
-            print("收到版本检查请求，发送主机版本信息")
-            SendHostVersion()
-        else
-            -- 玩家端逻辑：主动请求版本检查
-            print("发送版本检查请求给主机")
-            Network.SendChat(".RequestModVersion", hostID, localID) -- 私聊发送给主机
-        end
-		CompareVersions()
-    end
+        if b_ishost == true then
 
-	if string.sub(text,1,18) == ".RequestModVersion" then
-		if b_ishost == true then
-			SendHostVersion()
-		else
-			return
-		end
-	end
+        else
+            SendHostVersion()
+        end
+    end
 
 	if string.sub(text,1,20) == ".ccbt_ui_modversion_" then --接收玩家发送的模组版本
 		local indexCCBBs, indexCCBBe = string.find(text,"_CCBB_") --找出Version字符串
