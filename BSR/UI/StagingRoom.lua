@@ -816,96 +816,49 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
 		end
 	end
 
-	if string.sub(text,1,20) == ".ccbt_ui_modversion_" then --隐藏MOD发送的信息（公屏）
-		local indexCCBBs, indexCCBBe = string.find(text,"_CCBB_")
-		local indexCCBMs, indexCCBMe = string.find(text,"_CCBM_")
-		local indexCCBEs, indexCCBEe = string.find(text,"_CCBE_")
-		local ccbt_version = string.sub(text,20,indexCCBBs-1)
-		local ccbb_version = string.sub(text,indexCCBBe+1,indexCCBMs-1)
-		local ccbm_version = string.sub(text, indexCCBMe+1,indexCCBEs-1)
-		local ccbe_version = string.sub(text,indexCCBEe+1)
-		print("各模组版本"..tostring(ccbt_version)..tostring(ccbb_version)..tostring(ccbm_version)..tostring(ccbe_version))
-		return
+        if b_ishost then
+            if b_ccbt_game == true then
+                if ccbt_version == GetLocalModVersion(s_ccbt_id) then
+                    ccbt_compare = true
+                    text_ccbt_compare = "[COLOR_Civ6Green]CCB工具箱版本正确[ENDCOLOR]  "
+                else
+                    ccbt_compare = false
+                    text_ccbt_compare = "[COLOR_RED]CCB工具箱版本错误 请重新订阅模组更新[ENDCOLOR]  "
+                end
+            end
+            if b_ccbb_game == true then
+                if ccbb_version == GetLocalModVersion(s_ccbb_id) then
+                    ccbb_compare = true
+                    text_ccbb_compare = "[COLOR_Civ6Green]CCB基础版本正确[ENDCOLOR]  "
+                else
+                    ccbb_compare = false
+                    text_ccbt_compare = "[COLOR_RED]CCB基础版本错误 请重新订阅模组更新[ENDCOLOR]  "
+                end
+            end
+            if b_ccbm_game == true then
+                if ccbm_version == GetLocalModVersion(s_ccbm_id) then
+                    ccbm_compare = true
+                    text_ccbm_compare = "[COLOR_Civ6Green]CCB地图版本正确[ENDCOLOR]  "
+                else
+                    ccbm_compare = false
+                    text_ccbt_compare = "[COLOR_RED]CCB地图版本错误 请重新订阅模组更新[ENDCOLOR]  "
+                end
+            end
+            if b_ccbe_game == true then
+                if ccbe_version == GetLocalModVersion(s_ccbe_id) then
+                    ccbe_compare = true
+                    text_ccbe_compare = "[COLOR_Civ6Green]CCB拓展版本正确[ENDCOLOR]  "
+                else
+                    ccbe_compare = false
+                    text_ccbt_compare = "[COLOR_RED]CCB拓展版本错误 请重新订阅模组更新[ENDCOLOR]  "
+                end
+        end
+        Network.SendChat(tostring(text_ccbt_compare)..tostring(text_ccbb_compare)..tostring(text_ccbm_compare)..tostring(text_ccbe_compare),-2,fromPlayer)
 	end
 
     OnChat(fromPlayer, toPlayer, text, eTargetType, true);
 end
 
-function CompareVersions(host_ccbt, host_ccbb, host_ccbm, host_ccbe)
-    local local_ccbt = g_mod_version["ccb_tool_version"]
-    local local_ccbb = g_mod_version["ccbb_version"]
-    local local_ccbm = g_mod_version["ccb_map_version"]
-    local local_ccbe = g_mod_version["ccbe_version"]
-	local host_ccbt = local_ccbt
-    local host_ccbb = local_ccbb
-    local host_ccbm = local_ccbm
-    local host_ccbe = local_ccbe
-    
-    print("开始版本比较...")
-    print("本地版本 - CCBT:"..tostring(local_ccbt).." CCBB:"..tostring(local_ccbb).." CCBM:"..tostring(local_ccbm).." CCBE:"..tostring(local_ccbe))
-    print("主机版本 - CCBT:"..tostring(host_ccbt).." CCBB:"..tostring(host_ccbb).." CCBM:"..tostring(host_ccbm).." CCBE:"..tostring(host_ccbe))
-    
-    -- 重置比较结果
-    g_version_match = {
-        ccbt = false,
-        ccbb = false,
-        ccbm = false,
-        ccbe = false
-    }
-    
-    -- 逐个比较版本
-    local all_match = true
-    
-    if local_ccbt == host_ccbt then
-        g_version_match.ccbt = true
-        print("✓ CCBT 版本匹配")
-    else
-        print("✗ CCBT 版本不匹配! 本地:"..tostring(local_ccbt).." 主机:"..tostring(host_ccbt))
-        all_match = false
-    end
-    
-    if local_ccbb == host_ccbb then
-        g_version_match.ccbb = true
-        print("✓ CCBB 版本匹配")
-    else
-        print("✗ CCBB 版本不匹配! 本地:"..tostring(local_ccbb).." 主机:"..tostring(host_ccbb))
-        all_match = false
-    end
-    
-    if local_ccbm == host_ccbm then
-        g_version_match.ccbm = true
-        print("✓ CCBM 版本匹配")
-    else
-        print("✗ CCBM 版本不匹配! 本地:"..tostring(local_ccbm).." 主机:"..tostring(host_ccbm))
-        all_match = false
-    end
-    
-    if local_ccbe == host_ccbe then
-        g_version_match.ccbe = true
-        print("✓ CCBE 版本匹配")
-    else
-        print("✗ CCBE 版本不匹配! 本地:"..tostring(local_ccbe).." 主机:"..tostring(host_ccbe))
-        all_match = false
-    end
-    
-    if all_match then
-        print("所有模组版本匹配，可以正常游戏！")
-    else
-        print("警告：部分模组版本不匹配，可能导致游戏异常！")
-    end
-    
-    return all_match
-end
-
--- 获取版本比较结果的函数（可用于UI显示）
-function GetVersionMatchStatus()
-    return g_version_match
-end
-
--- 检查是否所有模组版本都匹配
-function IsAllVersionMatched()
-    return g_version_match.ccbt and g_version_match.ccbb and g_version_match.ccbm and g_version_match.ccbe
-end
 
 function OnChat(fromPlayer, toPlayer, text, eTargetType, playSounds)
     if (ContextPtr:IsHidden() == false) then
@@ -3412,15 +3365,15 @@ function BuildAdditionalContent()
 
     local enabledMods = GameConfiguration.GetEnabledMods();
 	b_ccbb_game = false --是否为CCB基础游戏
-	 b_ccbm_game = false --是否为CCB地图游戏
-	 b_ccbe_game = false --是否为CCB拓展游戏
-	 b_ccbt_game = false --是否为CCBtoolkit游戏
-	 g_mod_version = g_mod_version or {nil}
-	 s_ccbb_id = s_ccbb_id or ""
-	 s_ccbm_id = s_ccbm_id or ""
-	 s_ccbe_id = s_ccbe_id or "" 
-	 s_ccbt_id = s_ccbt_id or ""
-	 isCivPlayerName = false
+	b_ccbm_game = false --是否为CCB地图游戏
+	b_ccbe_game = false --是否为CCB拓展游戏
+	b_ccbt_game = false --是否为CCBtoolkit游戏
+	g_mod_version = g_mod_version or {nil}
+	s_ccbb_id = s_ccbb_id or ""
+	s_ccbm_id = s_ccbm_id or ""
+	s_ccbe_id = s_ccbe_id or "" 
+	s_ccbt_id = s_ccbt_id or ""
+	isCivPlayerName = false
 	local count = 0
     for _, curMod in ipairs(enabledMods) do
 		count = count + 1
