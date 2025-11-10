@@ -834,7 +834,7 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
                     text_ccbb_compare = "[COLOR_Civ6Green]CCB基础版本正确[ENDCOLOR]  "
                 else
                     ccbb_compare = false
-                    text_ccbt_compare = "[COLOR_RED]CCB基础版本错误 请重新订阅模组更新[ENDCOLOR]  "
+                    text_ccbb_compare = "[COLOR_RED]CCB基础版本错误 请重新订阅模组更新[ENDCOLOR]  "
                 end
             end
             if b_ccbm_game == true then
@@ -843,7 +843,7 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
                     text_ccbm_compare = "[COLOR_Civ6Green]CCB地图版本正确[ENDCOLOR]  "
                 else
                     ccbm_compare = false
-                    text_ccbt_compare = "[COLOR_RED]CCB地图版本错误 请重新订阅模组更新[ENDCOLOR]  "
+                    text_ccbm_compare = "[COLOR_RED]CCB地图版本错误 请重新订阅模组更新[ENDCOLOR]  "
                 end
             end
             if b_ccbe_game == true then
@@ -852,7 +852,7 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
                     text_ccbe_compare = "[COLOR_Civ6Green]CCB拓展版本正确[ENDCOLOR]  "
                 else
                     ccbe_compare = false
-                    text_ccbt_compare = "[COLOR_RED]CCB拓展版本错误 请重新订阅模组更新[ENDCOLOR]  "
+                    text_ccbe_compare = "[COLOR_RED]CCB拓展版本错误 请重新订阅模组更新[ENDCOLOR]  "
                 end
             end
             Network.SendChat(tostring(text_ccbt_compare)..tostring(text_ccbb_compare)..tostring(text_ccbm_compare)..tostring(text_ccbe_compare),-2,fromPlayer)
