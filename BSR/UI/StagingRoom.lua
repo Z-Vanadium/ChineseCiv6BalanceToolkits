@@ -816,7 +816,20 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
 		end
 	end
 
-        if b_ishost then
+	if string.sub(text,1,20) == ".ccbt_ui_modversion_" then --接收玩家发送的模组版本
+		local indexCCBBs, indexCCBBe = string.find(text,"_CCBB_") --找出Version字符串
+		local indexCCBMs, indexCCBMe = string.find(text,"_CCBM_")
+		local indexCCBEs, indexCCBEe = string.find(text,"_CCBE_")
+		local ccbt_version = string.sub(text,21,indexCCBBs-1) or "Unknown"--定义Version字符串
+		local ccbb_version = string.sub(text,indexCCBBe+1,indexCCBMs-1) or "Unknown"
+		local ccbm_version = string.sub(text, indexCCBMe+1,indexCCBEs-1) or "Unknown"
+		local ccbe_version = string.sub(text,indexCCBEe+1) or "Unknown"
+        local ccbt_compare = false --是否匹配变量
+        local ccbb_compare = false
+        local ccbm_compare = false
+        local ccbe_compare = false
+		print("各模组版本"..tostring(ccbt_version)..tostring(ccbb_version)..tostring(ccbm_version)..tostring(ccbe_version)) --debug
+        if b_ishost == true then
             if b_ccbt_game == true then
                 if ccbt_version == GetLocalModVersion(s_ccbt_id) then
                     ccbt_compare = true
@@ -852,8 +865,9 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
                     ccbe_compare = false
                     text_ccbt_compare = "[COLOR_RED]CCB拓展版本错误 请重新订阅模组更新[ENDCOLOR]  "
                 end
+            end
         end
-        Network.SendChat(tostring(text_ccbt_compare)..tostring(text_ccbb_compare)..tostring(text_ccbm_compare)..tostring(text_ccbe_compare),-2,fromPlayer)
+        Network.SendChat(tostring(text_ccbt_compare)..tostring(text_ccbb_compare)..tostring(text_ccbm_compare)..tostring(text_ccbe_compare),-2,toPlayer)
 	end
 
     OnChat(fromPlayer, toPlayer, text, eTargetType, true);
@@ -3365,15 +3379,15 @@ function BuildAdditionalContent()
 
     local enabledMods = GameConfiguration.GetEnabledMods();
 	b_ccbb_game = false --是否为CCB基础游戏
-	b_ccbm_game = false --是否为CCB地图游戏
-	b_ccbe_game = false --是否为CCB拓展游戏
-	b_ccbt_game = false --是否为CCBtoolkit游戏
-	g_mod_version = g_mod_version or {nil}
-	s_ccbb_id = s_ccbb_id or ""
-	s_ccbm_id = s_ccbm_id or ""
-	s_ccbe_id = s_ccbe_id or "" 
-	s_ccbt_id = s_ccbt_id or ""
-	isCivPlayerName = false
+	 b_ccbm_game = false --是否为CCB地图游戏
+	 b_ccbe_game = false --是否为CCB拓展游戏
+	 b_ccbt_game = false --是否为CCBtoolkit游戏
+	 g_mod_version = g_mod_version or {nil}
+	 s_ccbb_id = s_ccbb_id or ""
+	 s_ccbm_id = s_ccbm_id or ""
+	 s_ccbe_id = s_ccbe_id or "" 
+	 s_ccbt_id = s_ccbt_id or ""
+	 isCivPlayerName = false
 	local count = 0
     for _, curMod in ipairs(enabledMods) do
 		count = count + 1
