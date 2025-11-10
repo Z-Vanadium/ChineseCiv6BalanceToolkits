@@ -797,8 +797,9 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
 
     if string.sub(text,1,16) == ".CheckModVersion" then
         if b_ishost == true then
-
+            print("主机不发送")
         else
+            print("客户端发送")
             SendHostVersion()
         end
     end
@@ -807,14 +808,15 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
 		local indexCCBBs, indexCCBBe = string.find(text,"_CCBB_") --找出Version字符串
 		local indexCCBMs, indexCCBMe = string.find(text,"_CCBM_")
 		local indexCCBEs, indexCCBEe = string.find(text,"_CCBE_")
-		local ccbt_version = string.sub(text,21,indexCCBBs-1) or "Unknown"--定义Version字符串
-		local ccbb_version = string.sub(text,indexCCBBe+1,indexCCBMs-1) or "Unknown"
-		local ccbm_version = string.sub(text, indexCCBMe+1,indexCCBEs-1) or "Unknown"
-		local ccbe_version = string.sub(text,indexCCBEe+1) or "Unknown"
+		local ccbt_version = string.sub(text,21,indexCCBBs-1) or "unknown"--定义Version字符串
+		local ccbb_version = string.sub(text,indexCCBBe+1,indexCCBMs-1) or "unknown"
+		local ccbm_version = string.sub(text, indexCCBMe+1,indexCCBEs-1) or "unknown"
+		local ccbe_version = string.sub(text,indexCCBEe+1) or "unknown"
         local ccbt_compare = false --是否匹配变量
         local ccbb_compare = false
         local ccbm_compare = false
         local ccbe_compare = false
+        b_ccbt_game = true
 		print("各模组版本"..tostring(ccbt_version)..tostring(ccbb_version)..tostring(ccbm_version)..tostring(ccbe_version)) --debug
         if b_ishost == true then
             if b_ccbt_game == true then
@@ -853,8 +855,10 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
                     text_ccbt_compare = "[COLOR_RED]CCB拓展版本错误 请重新订阅模组更新[ENDCOLOR]  "
                 end
             end
+            Network.SendChat(tostring(text_ccbt_compare)..tostring(text_ccbb_compare)..tostring(text_ccbm_compare)..tostring(text_ccbe_compare),-2,fromPlayer)
+        else
+            print("非房主不进行任何解析")
         end
-        Network.SendChat(tostring(text_ccbt_compare)..tostring(text_ccbb_compare)..tostring(text_ccbm_compare)..tostring(text_ccbe_compare),-2,toPlayer)
 	end
 
     OnChat(fromPlayer, toPlayer, text, eTargetType, true);
@@ -5005,7 +5009,7 @@ function SendHostVersion()
 	b_ccbt_game = true
 	local localID = Network.GetLocalPlayerID()
 	local hostID = Network.GetGameHostPlayerID()
-	if localID == hostID and b_ccbt_game == true then
+	if b_ccbt_game == true then
         -- 直接从 g_mod_version 表中获取版本号
         local ccbb_version = g_mod_version["ccbb_version"]
         local ccbm_version = g_mod_version["ccb_map_version"] 
@@ -5016,7 +5020,7 @@ function SendHostVersion()
         print("CCBM Version:", ccbm_version)
         print("CCBE Version:", ccbe_version)
         print("CCBT Version:", ccbt_version)
-		Network.SendChat(".ccbt_ui_modversion_"..tostring(ccbt_version).."_CCBB_"..tostring(ccbb_version).."_CCBM_"..tostring(ccbm_version).."_CCBE_"..tostring(ccbe_version),-2,hostID)
+		Network.SendChat(".ccbt_ui_modversion_"..tostring(ccbt_version).."_CCBB_"..tostring(ccbb_version).."_CCBM_"..tostring(ccbm_version).."_CCBE_"..tostring(ccbe_version),-2,localID)
 		print("Mod Version Sending successfully")
 	end
 end
