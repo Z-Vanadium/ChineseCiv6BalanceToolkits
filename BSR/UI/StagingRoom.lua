@@ -781,14 +781,14 @@ end
 function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
 	local localID = Network.GetLocalPlayerID();
 	local hostID = Network.GetGameHostPlayerID();
-	print(hostID)
-	print(localID)
+	--print(hostID)
+	--print(localID)
 	if localID == hostID then
 		b_ishost = true
-		print("Be Host")
+		--print("Be Host")
 	else
 		b_ishost = false
-		print("Be not the Host")
+		--print("Be not the Host")
 	end
 	
 	if string.sub(text,1,6) == "output" then
@@ -802,6 +802,7 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
             print("客户端发送")
             SendHostVersion()
         end
+        return
     end
 
 	if string.sub(text,1,20) == ".ccbt_ui_modversion_" then --接收玩家发送的模组版本
@@ -868,6 +869,20 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
     OnChat(fromPlayer, toPlayer, text, eTargetType, true);
 end
 
+function OnModCheckButton_CCB()
+    local localID = Network.GetLocalPlayerID();
+	local hostID = Network.GetGameHostPlayerID();
+	--print(hostID)
+	--print(localID)
+	if localID == hostID then
+		b_ishost = true
+		--print("Be Host")
+        Network.SendChat(".CheckModVersion",-2,hostID)
+	else
+		b_ishost = false
+		--print("Be not the Host")
+	end
+end
 
 function OnChat(fromPlayer, toPlayer, text, eTargetType, playSounds)
     if (ContextPtr:IsHidden() == false) then
@@ -4763,7 +4778,7 @@ function Initialize()
 
     Controls.Header_CloseButton:RegisterCallback(Mouse.eLClick, OnLeaderStatsClose);
 
-    Controls.ModCheckButton:RegisterCallback(Mouse.eLClick, OnModCheckButton);
+    Controls.ModCheckButton:RegisterCallback(Mouse.eLClick, OnModCheckButton_CCB);
     Controls.ModCheckButton:RegisterCallback(Mouse.eMouseEnter, function()
         UI.PlaySound("Main_Menu_Mouse_Over");
     end);
