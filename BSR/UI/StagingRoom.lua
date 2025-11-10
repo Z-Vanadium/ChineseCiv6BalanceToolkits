@@ -855,10 +855,14 @@ function OnMultiplayerChat(fromPlayer, toPlayer, text, eTargetType)
                     text_ccbe_compare = "[COLOR_RED]CCB拓展版本错误 请重新订阅模组更新[ENDCOLOR]  "
                 end
             end
-            Network.SendChat(tostring(text_ccbt_compare)..tostring(text_ccbb_compare)..tostring(text_ccbm_compare)..tostring(text_ccbe_compare),-2,fromPlayer)
+            local pPlayerConfig = PlayerConfigurations[fromPlayer];
+            local playerName = Locale.Lookup(pPlayerConfig:GetPlayerName());
+            print(playerName)
+            Network.SendChat(tostring(playerName)..tostring(":  ")..tostring(text_ccbt_compare)..tostring(text_ccbb_compare)..tostring(text_ccbm_compare)..tostring(text_ccbe_compare),-2,fromPlayer)
         else
             print("非房主不进行任何解析")
         end
+        return
 	end
 
     OnChat(fromPlayer, toPlayer, text, eTargetType, true);
