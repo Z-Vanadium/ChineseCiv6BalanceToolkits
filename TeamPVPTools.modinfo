@@ -7,19 +7,21 @@
   |_|\___|\__,_|_| |_| |_| |_|     \_/  |_|       |_|\___/ \___/|_|___/
   2023.05.04	号码菌
 -->
-    <!--Jianbao-->
-<Mod id="8af4fe8e-5406-7d72-d9d6-a8f5d1b66e50" version="20240805">
+    <!--JianbaoTest-->
+<!--<Mod id="8af4fe8e-5406-7d72-d9d6-a8f5d1b66e50" version="20240805">-->
+	<!-- 测试版 -->
+<!-- <Mod id="8af4fe8e-5406-7d72-d9d6-a8f5d1b66e42" version="20240805">-->
 	<!-- 正式版 -->
-<!-- <Mod id="8af4fe8e-5406-7d72-d9d6-a8f5d1b66e40" version="20240805"> -->
+ <Mod id="8af4fe8e-5406-7d72-d9d6-a8f5d1b66e40" version="20240805">
 	<Properties>
-		<Name>CCB 工具箱测试版A</Name>
+		<Name>CCB 工具箱0.1.0</Name>
 		<Description>基于号码菌的联机工具箱的 CCB 适配版本，目前版本仅为内部测试使用，不代表最终品质</Description>
 		<Teaser>LOC_TPT_TEASER</Teaser>
 		<Authors>LOC_TPT_AUTHORS</Authors>
 		<SpecialThanks>LOC_TPT_THANKS</SpecialThanks>
 		<AffectsSavedGames>0</AffectsSavedGames>
 		<CompatibleVersions>1.2,2.0</CompatibleVersions>
-		<Version>001</Version>
+		<Version>010</Version>
 	</Properties>
 
 	<LocalizedText>
