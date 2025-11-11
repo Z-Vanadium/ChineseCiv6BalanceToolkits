@@ -4778,7 +4778,7 @@ function Initialize()
 
     Controls.Header_CloseButton:RegisterCallback(Mouse.eLClick, OnLeaderStatsClose);
 
-    Controls.ModCheckButton:RegisterCallback(Mouse.eLClick, OnModCheckButton_CCB);
+    Controls.ModCheckButton:RegisterCallback(Mouse.eLClick, OnModCheckButton_CCB); --CCB MODCHECK
     Controls.ModCheckButton:RegisterCallback(Mouse.eMouseEnter, function()
         UI.PlaySound("Main_Menu_Mouse_Over");
     end);

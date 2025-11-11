@@ -112,9 +112,12 @@
 		<Replace Tag="LOC_TPT_MODCHECK_NAME" Language="zh_Hans_CN">
 			<Text>模组检测</Text>
 		</Replace>
-		<Replace Tag="LOC_TPT_MODCHECK_BUTTON_TOOLTIP" Language="zh_Hans_CN">
+<!--		<Replace Tag="LOC_TPT_MODCHECK_BUTTON_TOOLTIP" Language="zh_Hans_CN">
 			<Text>反作弊检查，检查自动下载的模组创意工坊主页。[NEWLINE][NEWLINE]如果创意工坊网页无法访问，物品被隐藏，或者名字不正确，订阅量极少，请谨慎进行游戏，可能来自作弊模组。</Text>
-		</Replace>
+		</Replace> -->
+		<Replace Tag="LOC_TPT_MODCHECK_BUTTON_TOOLTIP" Language="zh_Hans_CN">
+			<Text>CCB试行的丐版ModCheck</Text>
+		</Replace> 
 		<Replace Tag="LOC_BSR_FREE_ABILITY_NAME" Language="zh_Hans_CN">
 			<Text>无限文明：储存</Text>
 		</Replace>
