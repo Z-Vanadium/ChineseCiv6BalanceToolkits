@@ -3389,15 +3389,15 @@ function BuildAdditionalContent()
 
     local enabledMods = GameConfiguration.GetEnabledMods();
 	b_ccbb_game = false --是否为CCB基础游戏
-	 b_ccbm_game = false --是否为CCB地图游戏
-	 b_ccbe_game = false --是否为CCB拓展游戏
-	 b_ccbt_game = false --是否为CCBtoolkit游戏
-	 g_mod_version = g_mod_version or {nil}
-	 s_ccbb_id = s_ccbb_id or ""
-	 s_ccbm_id = s_ccbm_id or ""
-	 s_ccbe_id = s_ccbe_id or "" 
-	 s_ccbt_id = s_ccbt_id or ""
-	 isCivPlayerName = false
+	b_ccbm_game = false --是否为CCB地图游戏
+	b_ccbe_game = false --是否为CCB拓展游戏
+	b_ccbt_game = false --是否为CCBtoolkit游戏
+	g_mod_version = g_mod_version or {nil}
+	s_ccbb_id = s_ccbb_id or ""
+	s_ccbm_id = s_ccbm_id or ""
+	s_ccbe_id = s_ccbe_id or "" 
+	s_ccbt_id = s_ccbt_id or ""
+	isCivPlayerName = false
 	local count = 0
     for _, curMod in ipairs(enabledMods) do
 		count = count + 1
