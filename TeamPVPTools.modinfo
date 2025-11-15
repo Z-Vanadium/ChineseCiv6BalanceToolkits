@@ -14,7 +14,7 @@
 	<!-- 正式版 -->
  <Mod id="8af4fe8e-5406-7d72-d9d6-a8f5d1b66e40" version="20240805">
 	<Properties>
-		<Name>CCB 工具箱0.1.0</Name>
+		<Name>CCB 工具箱 0.1.0</Name>
 		<Description>基于号码菌的联机工具箱的 CCB 适配版本，目前版本仅为内部测试使用，不代表最终品质</Description>
 		<Teaser>LOC_TPT_TEASER</Teaser>
 		<Authors>LOC_TPT_AUTHORS</Authors>

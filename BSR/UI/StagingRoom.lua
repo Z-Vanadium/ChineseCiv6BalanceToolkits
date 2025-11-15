@@ -3409,7 +3409,9 @@ function BuildAdditionalContent()
             isCivPlayerName = true
             modTitleStr = "[COLOR_RED]".. modTitleStr .. "[ENDCOLOR]";
         end
-		if curMod.Id == "8af4fe8e-5406-7d72-d9d6-a8f5d1b66e50" then --CCBT 测试版本号
+		if curMod.Id == "8af4fe8e-5406-7d72-d9d6-a8f5d1b66e40"      --CCBT 正式版版本号
+        or curMod.Id == "8af4fe8e-5406-7d72-d9d6-a8f5d1b66e42"      --CCBT 测试版本号
+        or curMod.Id == "8af4fe8e-5406-7d72-d9d6-a8f5d1b66e50" then --CCBT Jianbao
             local version = GetLocalModVersion(curMod.Id)
 			g_mod_version["ccb_tool_version"] = version or "unknown"
             if version then
