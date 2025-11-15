@@ -8,20 +8,20 @@
 			<Text>G3559469993</Text>
 		</Replace>
 		<Replace Tag="LOC_TEAM_PVP_VERSION" Language="zh_Hans_CN">
-			<Text>v1.61-II</Text>
+			<Text>CCB-TOOLs</Text>
 		</Replace>
 		<Replace Tag="LOC_TEAM_PVP_TOOLS_UPDATE_HEADER" Language="zh_Hans_CN">
 			<Text>更新内容</Text>
 		</Replace>
 		<!-- 按顺序 LOC_TEAM_PVP_TOOLS_UPDATE_ 后面接1、2、3、4... 连续的 -->
 		<Replace Tag="LOC_TEAM_PVP_TOOLS_UPDATE_1" Language="zh_Hans_CN">
-			<Text>允许在领袖图上游戏查看其他领袖能力</Text>
+			<Text>可以将禁止SE作为可选项进行游戏</Text>
 		</Replace>
 		<Replace Tag="LOC_TEAM_PVP_TOOLS_UPDATE_2" Language="zh_Hans_CN">
-			<Text>将灾害强度设置为-1以禁止灾害</Text>
+			<Text>新增了丐版模组检测</Text>
 		</Replace>
 		<Replace Tag="LOC_TEAM_PVP_TOOLS_UPDATE_3" Language="zh_Hans_CN">
-			<Text>允许清除领袖使用统计了</Text>
+			<Text>如出现BUG等相关问题请添加QQ频道CIV6CCBMOD</Text>
 		</Replace>
 	</LocalizedText>
 </GameData>
