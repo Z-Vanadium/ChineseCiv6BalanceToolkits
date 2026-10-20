@@ -154,6 +154,13 @@
 			</Properties>
 			<File>BNL/NetConnectionIconLogic.lua</File>
 		</ImportFiles>
+		<!-- CCB default game configuration -->
+		<UpdateDatabase id="Config_base">
+			<Properties>
+				<LoadOrder>10</LoadOrder>
+			</Properties>
+			<File>Config/GameConfig_BASE.xml</File>
+		</UpdateDatabase>
 	</FrontEndActions>
 
 	<InGameActions>
@@ -411,6 +418,13 @@
 			</Properties>
 			<File>Update/UI/AutoUpdate.xml</File>
 		</AddUserInterfaces>
+		<!-- CCB default parameter compatibility -->
+		<UpdateDatabase id="Config_CCB">
+			<Properties>
+				<LoadOrder>100020</LoadOrder>
+			</Properties>
+			<File>MPH/Config.sql</File>
+		</UpdateDatabase>
 	</InGameActions>
 	<Files>
 		<File>BCS/UI/CityStates.xml</File>
@@ -470,5 +484,7 @@
 		<File>Settings/Config_UI_Text.xml</File>
 		<File>Update/UI/AutoUpdate.lua</File>
 		<File>Update/UI/AutoUpdate.xml</File>
+		<File>Config/GameConfig_BASE.xml</File>
+		<File>MPH/Config.sql</File>
 	</Files>
 </Mod>
