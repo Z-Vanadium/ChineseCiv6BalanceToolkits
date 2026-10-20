@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameInfo>
+	<Parameters>
+		<!-- CCB 2.0 适配：旧 CCB 此处 DefaultValue="1"，但 MPH/Config.sql 一直把它 UPDATE 成 0（CCB 既定习惯=额外快捷键默认关闭），此处直接把默认值对齐为 0，避免两处不一致。 -->
+		<Row ParameterId="NEW_HOTKEYS" Name="TPT_NEW_HOTKEYS_NAME" Description="TPT_NEW_HOTKEYS_DESC" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="NEW_HOTKEYS" GroupId="AdvancedOptions" ChangeableAfterGameStart="0" SortIndex="2903" />
+	</Parameters>
+</GameInfo>

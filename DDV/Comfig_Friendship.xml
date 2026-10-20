@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameInfo>
+	<Parameters>
+		<!-- CCB 2.0 适配：旧 CCB 此处 DefaultValue="1"（默认禁止宣布友谊），本轮按"外交限制开关不得默认强制开启"改为 0，玩家需手动勾选。 -->
+		<Row ParameterId="TPT_NO_FRIENDSHIP" 	Name="LOC_TPT_NO_FRIENDSHIP_NAME" 	Description="LOC_TPT_NO_FRIENDSHIP_DESC" 		Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="TPT_NO_FRIENDSHIP" 		GroupId="AdvancedOptions" ChangeableAfterGameStart="0" SortIndex="2011" />
+	</Parameters>
+</GameInfo>

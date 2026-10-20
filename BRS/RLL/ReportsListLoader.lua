@@ -1,4 +1,4 @@
-﻿print("Loading ReportsListLoader.lua from ReportsList Loader "..GlobalParameters.RLL_VERSION_MAJOR.."."..GlobalParameters.RLL_VERSION_MINOR);
+print("Loading ReportsListLoader.lua from ReportsList Loader "..GlobalParameters.RLL_VERSION_MAJOR.."."..GlobalParameters.RLL_VERSION_MINOR);
 -- ===========================================================================
 -- ReportsList Loader
 -- Author: Infixo
