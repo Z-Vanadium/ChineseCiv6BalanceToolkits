@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?> 
+ <GameData>
+	<LocalizedText>
+		<Replace Tag="LOC_SETTINGS_UI_NAME" Language="zh_Hans_CN">
+			<Text>UI设置</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_NAME" Language="en_US">
+			<Text>UI Settings</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_DESC" Language="zh_Hans_CN">
+			<Text>选择要启用的UI功能</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_DESC" Language="en_US">
+			<Text>Select the UI you want to enable</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_ENABLE_ALL_NAME" Language="zh_Hans_CN">
+			<Text>全部启用(推荐)</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_ENABLE_ALL_NAME" Language="en_US">
+			<Text>Enable All [icon_Checkmark]</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_ENABLE_ALL_DESC" Language="zh_Hans_CN">
+			<Text>全部启用</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_ENABLE_ALL_DESC" Language="en_US">
+			<Text>Enable All</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_CUSTOM_NAME" Language="zh_Hans_CN">
+			<Text>自定义</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_CUSTOM_NAME" Language="en_US">
+			<Text>Custom</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_CUSTOM_DESC" Language="zh_Hans_CN">
+			<Text>自定义选择启用UI</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_CUSTOM_DESC" Language="en_US">
+			<Text>Custom Enable UI</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BCS_NAME" Language="zh_Hans_CN">
+			<Text>城邦界面优化</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BCS_NAME" Language="en_US">
+			<Text>Better City States Lite</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BCS_DESC" Language="zh_Hans_CN">
+			<Text>显示城邦任务，使者排名颜色增强</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BCS_DESC" Language="en_US">
+			<Text>Displays city-state quests, marking players at war</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BGP_NAME" Language="zh_Hans_CN">
+			<Text>伟人招募界面优化</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BGP_NAME" Language="en_US">
+			<Text>Better Great People Panel</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BGP_DESC" Language="zh_Hans_CN">
+			<Text>更大的伟人点数显示区域</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BGP_DESC" Language="en_US">
+			<Text>Larger area of Great People points</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BRS_NAME" Language="zh_Hans_CN">
+			<Text>政策卡拓展</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BRS_NAME" Language="en_US">
+			<Text>Extended Policy Cards</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BRS_DESC" Language="zh_Hans_CN">
+			<Text>显示政策卡收益</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_BRS_DESC" Language="en_US">
+			<Text>Extends the Policy Cards to display all the relevant effects of selecting each</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_NQC_NAME" Language="zh_Hans_CN">
+			<Text>通知栏快速清理</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_NQC_NAME" Language="en_US">
+			<Text>Notification Panel Quick Clear</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_NQC_DESC" Language="zh_Hans_CN">
+			<Text>快速清理通知</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_NQC_DESC" Language="en_US">
+			<Text>Quickly clean up Notification</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_TCP_NAME" Language="zh_Hans_CN">
+			<Text>真实科文进度</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_TCP_NAME" Language="en_US">
+			<Text>Tech Civic Boost Ratio Fix</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_TCP_DESC" Language="zh_Hans_CN">
+			<Text>修正了尤里卡比例显示</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_TCP_DESC" Language="en_US">
+			<Text>Fixed Boost ratio display</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_TPE_NAME" Language="zh_Hans_CN">
+			<Text>顶部面板拓展</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_TPE_NAME" Language="en_US">
+			<Text>Top Panel Extension Pro</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_TPE_DESC" Language="zh_Hans_CN">
+			<Text>显示粮食、生产力、人口、奢侈品和额外资源</Text>
+		</Replace>
+		<Replace Tag="LOC_SETTINGS_UI_TPE_DESC" Language="en_US">
+			<Text>Add indicators for Food, Production, Population, and Luxury resources to the Top Panel</Text>
+		</Replace>
+	</LocalizedText>
+</GameData>

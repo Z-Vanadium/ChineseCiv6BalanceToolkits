@@ -1,1 +1,0 @@
-UPDATE GlobalParameters SET Value='10' WHERE Name='DIPLOMACY_WAR_MIN_TURNS';		-- 恢复至原版

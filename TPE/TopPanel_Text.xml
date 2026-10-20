@@ -5,7 +5,7 @@
             <Text>[ICON_RESOURCE_TOYS] 拥有的奢侈品:({1_Type} 种类)</Text>
         </Replace>
         <Replace Tag="LOC_TPT_TOP_PANEL_LUXURY_RESOURCES" Language="en_US">
-            <Text>[ICON_RESOURCE_TOYS] Number of Luxury Resources Owned: ({1_Type} type)</Text>
+            <Text>[ICON_RESOURCE_TOYS] Number of Luxury Resources Owned:({1_Type} type)</Text>
         </Replace>
         <Replace Tag="LOC_TPT_TOP_PANEL_LUXURY_RESOURCES" Language="fr_FR">
             <Text>[ICON_RESOURCE_TOYS] Nombre de ressource de luxe possédé : ({1_Type} différentes)</Text>

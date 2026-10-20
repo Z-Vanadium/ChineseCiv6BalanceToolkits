@@ -107,7 +107,7 @@ function OnTopPanelToolTip_Population_Refresh(Population_Info)
 		if kdate.HousingMultiplier >= 1 then
 			HouseText = Locale.ToNumber(kdate.Housing, "+#####[Icon_Housing];-#####[Icon_Housing]")
 		else
-			-- JNNR:	avoids stack buffer overflow and crash on Mac
+			-- avoids stack buffer overflow and crash on Mac
 			local housingNum = Locale.ToNumber(kdate.Housing, "+#####;-#####")
 			HouseText = "[COLOR:ResMilitaryLabelCS]" .. housingNum .. "[Icon_HousingInsufficient]"
 		end

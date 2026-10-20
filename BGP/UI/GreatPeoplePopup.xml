@@ -42,7 +42,7 @@
 			<Line	
 																						Start="10,180" End="parent-10,180"	Width="2"				Color="48,60,68,255" />
 			<ScrollPanel				ID="RecruitedScroller"											Offset="10,181"	Size="parent-5,parent-182"	Vertical="1" AutoScrollBar="1">
-				<Stack						ID="RecruitedStack"																					StackGrowth="Up"		StackPadding="4" />		<!-- 伟人排序颠倒 -->
+				<Stack						ID="RecruitedStack"																					StackGrowth="Down"		StackPadding="4" />		<!-- 伟人排序颠倒 -->
 				<ScrollBar																			Anchor="R,T"	Offset="10,0"		Size="8,parent-300"		Style="ScrollVerticalBackingAlt">
 					<Thumb																																														Style="ScrollThumbHAlt" />
 				</ScrollBar>
