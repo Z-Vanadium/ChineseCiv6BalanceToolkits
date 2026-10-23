@@ -280,6 +280,13 @@
 			<File>NHK/Config_NewUnitOperation_Text.xml</File>
 			<File>NHK/Config_GreatPeople_Recruit_Text.xml</File>
 		</UpdateText>
+		<!-- Parameters belongs to the configuration database, not the gameplay database. -->
+		<UpdateDatabase id="Config_CCB">
+			<Properties>
+				<LoadOrder>100020</LoadOrder>
+			</Properties>
+			<File>MPH/Config.sql</File>
+		</UpdateDatabase>
 	</FrontEndActions>
 
 	<InGameActions>
@@ -530,13 +537,6 @@
 			</Properties>
 			<File>TPE/UI/TopPanel_TT.xml</File>
 		</AddUserInterfaces>
-		<!-- CCB default parameter compatibility -->
-		<UpdateDatabase id="Config_CCB">
-			<Properties>
-				<LoadOrder>100020</LoadOrder>
-			</Properties>
-			<File>MPH/Config.sql</File>
-		</UpdateDatabase>
 
 		<!--=====================================================================
 			CCB 2.0 适配（游戏内）
