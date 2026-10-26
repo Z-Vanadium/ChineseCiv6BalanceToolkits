@@ -1,1 +1,7 @@
 .DS_Store
+build/
+torelease/
+release/
+__pycache__/
+Binaries/Win64/*.dll
+Binaries/Win64/Plugins/Global/*.dll

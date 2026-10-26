@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="a7026192-7310-4733-a297-9f90564b6466" version="200">
+<Mod id="a7026192-7310-4733-a297-9f90564b6466" version="202">
 	<Properties>
 		<Name>LOC_CCB2_NAME</Name>
 		<Description>LOC_CCB2_DESCRIPTION</Description>
@@ -8,6 +8,7 @@
 		<SpecialThanks></SpecialThanks>
 		<AffectsSavedGames>0</AffectsSavedGames>
 		<CompatibleVersions>1.2,2.0</CompatibleVersions>
+		<CCBDisplayVersion>2.0.2-dev</CCBDisplayVersion>
 	</Properties>
 
 	<LocalizedText>
@@ -189,6 +190,32 @@
 	</ActionCriteria>
 
 	<FrontEndActions>
+		<!-- CCB MOD Check: shared Shell bootstrap and our native FE contexts. -->
+		<UpdateDatabase id="CCBMC_SharedGameCore">
+			<Properties><LoadOrder>11</LoadOrder></Properties>
+			<File>MPH/ModCheck/CCBModCheck_GameCores.sql</File>
+		</UpdateDatabase>
+		<UpdateText id="CCBMC_FrontEndText">
+			<File>MPH/ModCheck/CCBModCheckText.xml</File>
+		</UpdateText>
+		<ReplaceUIScript id="CCBMC_StagingRoom">
+			<Properties><LoadOrder>500000</LoadOrder><LuaContext>StagingRoom</LuaContext><LuaReplace>MPH/ModCheck/UI/StagingRoom.lua</LuaReplace></Properties>
+		</ReplaceUIScript>
+		<ReplaceUIScript id="CCBMC_MainMenu">
+			<Properties><LoadOrder>500000</LoadOrder><LuaContext>MainMenu</LuaContext><LuaReplace>MPH/ModCheck/UI/MainMenu.lua</LuaReplace></Properties>
+		</ReplaceUIScript>
+		<ImportFiles id="CCBMC_FrontEndImports">
+			<Properties><LoadOrder>500010</LoadOrder></Properties>
+			<File>MPH/ModCheck/CCBModCheckVersion.lua</File>
+			<File>MPH/ModCheck/CCBModCheckProtocol.lua</File>
+			<File>MPH/ModCheck/CCBModCheckController.lua</File>
+			<File>MPH/ModCheck/CCBModCheckStaging.lua</File>
+			<File>MPH/ModCheck/CCBModCheckMainMenu.lua</File>
+			<File>MPH/ModCheck/UI/StagingRoom.lua</File>
+			<File>MPH/ModCheck/UI/StagingRoom.xml</File>
+			<File>MPH/ModCheck/UI/MainMenu.lua</File>
+			<File>MPH/ModCheck/UI/MainMenu.xml</File>
+		</ImportFiles>
 		<!--Advanced Options (Settings)-->
 		<UpdateDatabase id="Config_Settings">
 			<Properties>
@@ -290,6 +317,9 @@
 	</FrontEndActions>
 
 	<InGameActions>
+		<UpdateText id="CCBMC_InGameText">
+			<File>MPH/ModCheck/CCBModCheckText.xml</File>
+		</UpdateText>
 		<!--Advanced Options (Settings)-->
 		<UpdateText id="Config_Text">
 			<File>Settings/Config_UI_Text.xml</File>
@@ -681,6 +711,20 @@
 		</ImportFiles>
 	</InGameActions>
 	<Files>
+		<File>MPH/ModCheck/CCBModCheck_GameCores.sql</File>
+		<File>MPH/ModCheck/CCBModCheckText.xml</File>
+		<File>MPH/ModCheck/CCBModCheckVersion.lua</File>
+		<File>MPH/ModCheck/CCBModCheckProtocol.lua</File>
+		<File>MPH/ModCheck/CCBModCheckController.lua</File>
+		<File>MPH/ModCheck/CCBModCheckStaging.lua</File>
+		<File>MPH/ModCheck/CCBModCheckMainMenu.lua</File>
+		<File>MPH/ModCheck/UI/StagingRoom.lua</File>
+		<File>MPH/ModCheck/UI/StagingRoom.xml</File>
+		<File>MPH/ModCheck/UI/MainMenu.lua</File>
+		<File>MPH/ModCheck/UI/MainMenu.xml</File>
+		<File>Binaries/Win64/GameCore_XP2_Shell_FinalRelease.dll</File>
+		<File>Binaries/Win64/Civ6DllLoader.runtime.dll</File>
+		<File>Binaries/Win64/Plugins/Global/CCBModCheck.dll</File>
 		<File>BCS/UI/CityStates.xml</File>
 		<File>BCS/UI/CityStates_BCS.lua</File>
 		<File>BCS/UI/CityStates_SPEC.lua</File>

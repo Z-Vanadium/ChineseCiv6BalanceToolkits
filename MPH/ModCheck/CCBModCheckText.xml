@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData><LocalizedText>
+  <Row Tag="LOC_CCBMC_REASON_OK" Language="zh_Hans_CN"><Text>完整校验与房主一致</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_DIFF" Language="zh_Hans_CN"><Text>清单、版本或内容不同</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_CORE" Language="zh_Hans_CN"><Text>核心未就绪，请按首装说明初始化并重启</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_RESPONSE" Language="zh_Hans_CN"><Text>未回应，请确认安装并启用工具箱</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_ERROR" Language="zh_Hans_CN"><Text>扫描失败，本次结果不可比较</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_TIMEOUT" Language="zh_Hans_CN"><Text>扫描超时，请重查本机</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_STALE" Language="zh_Hans_CN"><Text>结果已过期，等待房主重新检查</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_MANIFEST" Language="zh_Hans_CN"><Text>无法确定当前房间MOD清单</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_OK" Language="en_US"><Text>Full check matches the host</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_DIFF" Language="en_US"><Text>MOD list, version or content differs</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_CORE" Language="en_US"><Text>Core unavailable; initialize and restart as instructed</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_RESPONSE" Language="en_US"><Text>No response; install and enable the toolkit</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_ERROR" Language="en_US"><Text>Scan failed; result cannot be compared</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_TIMEOUT" Language="en_US"><Text>Scan timed out; recheck this machine</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_STALE" Language="en_US"><Text>Result expired; waiting for a new host check</Text></Row>
+  <Row Tag="LOC_CCBMC_REASON_MANIFEST" Language="en_US"><Text>Current room MOD list could not be resolved</Text></Row>
+  <Row Tag="LOC_CCBMC_SHORT" Language="zh_Hans_CN"><Text>MOD校验</Text></Row>
+  <Row Tag="LOC_CCBMC_NOT_CHECKED" Language="zh_Hans_CN"><Text>尚未检查</Text></Row>
+  <Row Tag="LOC_CCBMC_CHECK" Language="zh_Hans_CN"><Text>检查MOD</Text></Row>
+  <Row Tag="LOC_CCBMC_RECHECK_SELF" Language="zh_Hans_CN"><Text>重查本机</Text></Row>
+  <Row Tag="LOC_CCBMC_CHECKING" Language="zh_Hans_CN"><Text>检查中…</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_LOADED" Language="zh_Hans_CN"><Text>核心已加载</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_MISSING" Language="zh_Hans_CN"><Text>未检测到核心</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_ERROR" Language="zh_Hans_CN"><Text>核心接口异常</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_DETECTING" Language="zh_Hans_CN"><Text>检测核心中…</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_HINT" Language="zh_Hans_CN"><Text>请启用工具箱；首次进入一局风云变幻初始化后，完全退出并重启游戏。</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_INSTALL_HELP" Language="zh_Hans_CN"><Text>订阅或安装并启用工具箱 → 首次进入一局风云变幻 → 初始化公共核心 → 完全退出并重启。若仍未加载，请查看公共Loader日志；不要反复重启或覆盖其他加载器。绿色只代表当前核心接口可用。</Text></Row>
+  <Row Tag="LOC_CCBMC_SHORT" Language="en_US"><Text>MOD check</Text></Row>
+  <Row Tag="LOC_CCBMC_NOT_CHECKED" Language="en_US"><Text>Not checked</Text></Row>
+  <Row Tag="LOC_CCBMC_CHECK" Language="en_US"><Text>Check MODs</Text></Row>
+  <Row Tag="LOC_CCBMC_RECHECK_SELF" Language="en_US"><Text>Recheck self</Text></Row>
+  <Row Tag="LOC_CCBMC_CHECKING" Language="en_US"><Text>Checking…</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_LOADED" Language="en_US"><Text>Core loaded</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_MISSING" Language="en_US"><Text>Core not detected</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_ERROR" Language="en_US"><Text>Core interface error</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_DETECTING" Language="en_US"><Text>Detecting core…</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_HINT" Language="en_US"><Text>Enable the toolkit. First load a Gathering Storm game to initialize, then fully exit and restart.</Text></Row>
+  <Row Tag="LOC_CCBMC_CORE_INSTALL_HELP" Language="en_US"><Text>Install and enable the toolkit, first load a Gathering Storm game, initialize the shared core, then fully exit and restart. If unavailable, inspect the shared Loader log. Do not overwrite another loader. A loaded core is not a successful MOD comparison.</Text></Row>
+</LocalizedText></GameData>

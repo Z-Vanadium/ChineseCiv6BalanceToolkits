@@ -1,0 +1,9 @@
+{
+  "game": "F:\\Steam\\steamapps\\common\\Sid Meier's Civilization VI\\Base\\Assets\\UI\\FrontEnd",
+  "sha256": {
+    "StagingRoom.lua": "e05b89a60e9d79cf2161e196cd0e0ce8e3a236443070359dc1cf9393c563133e",
+    "StagingRoom.xml": "57f43b97e84d0aaa1e921dedce6929f97fd40775d838e500a94bfed3ee1ba10c",
+    "MainMenu.lua": "e3e4a92efe63d09c3ffefd49f1a8c09767751ea192395e5ffcec6552fdcfdce9",
+    "MainMenu.xml": "d522f102c3b0bf9182ccc08ea60a58fde596b8d628fabd1f2baea9512357e667"
+  }
+}
